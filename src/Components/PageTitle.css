@@ -1,0 +1,10 @@
+.page-title-title {
+  color: white;
+  font-size: xx-large;
+  text-align: center;
+  font-weight: bold;
+}
+
+.page-title-hr {
+  border-top: 4px solid white;
+}

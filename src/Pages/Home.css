@@ -1,0 +1,51 @@
+.home-title {
+  margin-top: 18rem;
+  color: white;
+  font-weight: bold;
+  font-size: xx-large;
+  padding-left: 4rem;
+}
+
+.home-sub-title {
+  font-weight: lighter;
+}
+
+.home-sub-title-decor {
+  color: rgb(14, 54, 54);
+  font-weight: bold;
+}
+
+.home-icon {
+  color: white !important;
+  font-size: 25rem;
+  margin-top: 8rem;
+}
+
+.home-button {
+  margin-right: 1.25rem;
+  font-weight: bolder;
+  border-color: white;
+  border-radius: 20px;
+  width: 10rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03),
+    0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
+    0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05),
+    0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+}
+
+.home-get-started {
+  background-color: white;
+  color: #4cc0d3;
+}
+
+.home-what-is {
+  color: white;
+}
+
+.home-about {
+  background-image: linear-gradient(to right, #39d26b, #0985ce);
+  color: white;
+  border: none;
+}

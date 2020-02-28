@@ -1,0 +1,25 @@
+.navbar-button-login {
+  margin-right: 1.25rem;
+  font-weight: bolder;
+  color: white;
+  border-color: white;
+  border-radius: 20px;
+  width: 8rem;
+}
+
+.navbar-button-sign-up {
+  font-weight: bolder;
+  color: white;
+  background-image: linear-gradient(to right, #39d26b, #0985ce);
+  border-radius: 20px;
+  width: 8rem;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03),
+    0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
+    0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05),
+    0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+}
+
+.navbar-brand-custom:hover {
+  cursor: pointer;
+  color: rgb(6, 32, 3) !important;
+}

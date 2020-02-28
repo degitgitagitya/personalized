@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
+import Petunjuk from "./Pages/Petunjuk";
+import Kuesioner from "./Pages/Kuesioner";
+import Hasil from "./Pages/Hasil";
+import PemilihanMateri from "./Pages/PemilihanMateri";
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Home></Home>
+        </Route>
+        <Route path="/login">
+          <Login></Login>
+        </Route>
+        <Route path="/sign-up">
+          <SignUp></SignUp>
+        </Route>
+        <Route path="/petunjuk">
+          <Petunjuk></Petunjuk>
+        </Route>
+        <Route path="/kuesioner">
+          <Kuesioner></Kuesioner>
+        </Route>
+        <Route path="/hasil">
+          <Hasil></Hasil>
+        </Route>
+        <Route path="/pemilihan-materi">
+          <PemilihanMateri></PemilihanMateri>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
