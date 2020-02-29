@@ -47,7 +47,7 @@ const MateriCard = props => {
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus,
             quod! Fuga, atque.
           </div>
-          <NavLink href="/materi">
+          <NavLink href="/daftar-materi">
             <button className="form-control btn btn-outline-info mt-2 mt-md-4">
               Mulai
             </button>

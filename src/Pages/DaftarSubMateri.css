@@ -1,0 +1,56 @@
+.daftar-sub-materi-container {
+  background-color: white;
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  margin-left: 0.625rem;
+  margin-right: 0.625rem;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03),
+    0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
+    0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05),
+    0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+}
+
+.daftar-sub-materi-title {
+  font-weight: bold;
+  font-size: x-large;
+  color: #66bdd1;
+}
+
+.daftar-sub-materi-sub-title {
+  font-size: 1.2rem;
+}
+
+.daftar-sub-materi-content {
+  font-weight: 300;
+}
+
+.daftar-sub-materi-list {
+  margin-top: 0.625rem;
+}
+
+.daftar-sub-materi-card-container {
+  display: inline-block;
+  width: 25%;
+  height: 13rem;
+  padding: 0.625rem;
+}
+
+.daftar-sub-materi-card {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03),
+    0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
+    0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05),
+    0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+  padding: 1.25rem;
+}
+
+.daftar-sub-materi-card-title {
+  color: #66bdd1;
+  font-weight: bold;
+}
+
+.daftar-sub-materi-card-sub-title {
+  margin-bottom: 1.25rem;
+}
