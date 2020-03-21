@@ -50,9 +50,7 @@ class SignUp extends Component {
 
   checkEmail = () => {
     if (
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-        this.state.inputEmail
-      )
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.state.inputEmail)
     ) {
       return true;
     }
@@ -100,6 +98,12 @@ class SignUp extends Component {
       .catch(error => console.log("error", error));
   };
 
+  handleKeyPress = event => {
+    if (event.key === "Enter") {
+      this.handleSignUpButton();
+    }
+  };
+
   render() {
     return (
       <div>
@@ -114,6 +118,7 @@ class SignUp extends Component {
               <input
                 value={this.state.inputNama}
                 onChange={this.onChangeNama}
+                onKeyPress={this.handleKeyPress}
                 id="nama"
                 className="form-control login-input"
                 placeholder="Nama Lengkap"
@@ -125,6 +130,7 @@ class SignUp extends Component {
               <input
                 value={this.state.inputEmail}
                 onChange={this.onChangeEmail}
+                onKeyPress={this.handleKeyPress}
                 id="email"
                 className="form-control login-input"
                 placeholder="Email"
@@ -135,6 +141,7 @@ class SignUp extends Component {
               </label>
               <input
                 value={this.state.inputPassword}
+                onKeyPress={this.handleKeyPress}
                 onChange={this.onChangePassword}
                 id="password"
                 className="form-control login-input"
@@ -147,6 +154,7 @@ class SignUp extends Component {
               </label>
               <input
                 value={this.state.inputConfirm}
+                onKeyPress={this.handleKeyPress}
                 onChange={this.onChangeConfirm}
                 id="password-confirm"
                 className="form-control login-input"

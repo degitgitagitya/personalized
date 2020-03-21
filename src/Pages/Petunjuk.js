@@ -15,7 +15,7 @@ export default class Petunjuk extends Component {
           title={`Petunjuk Pengisian Kuesioner Gaya Belajar`}
         ></PageTitle>
         <div className="petunjuk-container">
-          <div className="container p-5">
+          <div className="container py-5">
             Ad non eiusmod sunt labore in tempor amet pariatur tempor.
             Adipisicing exercitation aliqua irure culpa fugiat id quis culpa
             sunt esse cupidatat nulla. Ut in mollit fugiat et eu qui non labore
