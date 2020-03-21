@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import Authentication from "./Contexts/Authentication";
+import { ProtectedRoute } from "./Components/ProtectedRoute";
+
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
@@ -15,54 +18,76 @@ import SubMateri from "./Pages/SubMateri";
 import DaftarEvaluasi from "./Pages/DaftarEvaluasi";
 import SoalEvaluasi from "./Pages/SoalEvaluasi";
 import HasilEvaluasi from "./Pages/HasilEvaluasi";
+import NotFound from "./Pages/NotFound";
 
 export default function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home></Home>
-        </Route>
-        <Route path="/login">
-          <Login></Login>
-        </Route>
-        <Route path="/sign-up">
-          <SignUp></SignUp>
-        </Route>
-        <Route path="/petunjuk">
-          <Petunjuk></Petunjuk>
-        </Route>
-        <Route path="/kuesioner">
-          <Kuesioner></Kuesioner>
-        </Route>
-        <Route path="/hasil">
-          <Hasil></Hasil>
-        </Route>
-        <Route path="/pemilihan-materi">
-          <PemilihanMateri></PemilihanMateri>
-        </Route>
-        <Route path="/beranda">
-          <Beranda></Beranda>
-        </Route>
-        <Route path="/daftar-materi">
-          <DaftarMateri></DaftarMateri>
-        </Route>
-        <Route path="/daftar-sub-materi">
-          <DaftarSubMateri></DaftarSubMateri>
-        </Route>
-        <Route path="/sub-materi">
-          <SubMateri></SubMateri>
-        </Route>
-        <Route path="/daftar-evaluasi">
-          <DaftarEvaluasi></DaftarEvaluasi>
-        </Route>
-        <Route path="/soal-evaluasi">
-          <SoalEvaluasi></SoalEvaluasi>
-        </Route>
-        <Route path="/hasil-evaluasi">
-          <HasilEvaluasi></HasilEvaluasi>
-        </Route>
-      </Switch>
+      <Authentication>
+        <Switch>
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/login" component={Login}></Route>
+          <Route path="/sign-up">
+            <SignUp></SignUp>
+          </Route>
+          <ProtectedRoute
+            exact
+            path="/petunjuk"
+            component={Petunjuk}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/kuesioner"
+            component={Kuesioner}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/hasil"
+            component={Hasil}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/pemilihan-materi"
+            component={PemilihanMateri}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/beranda"
+            component={Beranda}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/daftar-materi"
+            component={DaftarMateri}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/daftar-sub-materi"
+            component={DaftarSubMateri}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/sub-materi"
+            component={SubMateri}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/daftar-evaluasi"
+            component={DaftarEvaluasi}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/soal-evaluasi"
+            component={SoalEvaluasi}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/hasil-evaluasi"
+            component={HasilEvaluasi}
+          ></ProtectedRoute>
+          <Route path="*" component={() => <NotFound />} />
+        </Switch>
+      </Authentication>
     </Router>
   );
 }
