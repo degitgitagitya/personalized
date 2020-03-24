@@ -5,7 +5,7 @@ const LIST_MATERI = [
     keterangan: "Excepteur est aliqua velit quis.",
     img:
       "https://previews.123rf.com/images/studio3321/studio33211510/studio3321151000014/46519784-architecture-plans-and-sketch-of-house-project.jpg",
-    url: ""
+    url: "/daftar-materi?id_gaya_belajar=1"
   },
   {
     no: 2,
@@ -14,7 +14,7 @@ const LIST_MATERI = [
       "Non enim amet veniam proident culpa cillum non cillum ullamco consequat excepteur in.",
     img:
       "https://previews.123rf.com/images/studio3321/studio33211510/studio3321151000014/46519784-architecture-plans-and-sketch-of-house-project.jpg",
-    url: ""
+    url: "/daftar-materi?id_gaya_belajar=2"
   },
   {
     no: 3,
@@ -22,7 +22,7 @@ const LIST_MATERI = [
     keterangan: "Lorem velit irure aute amet quis adipisicing.",
     img:
       "https://previews.123rf.com/images/studio3321/studio33211510/studio3321151000014/46519784-architecture-plans-and-sketch-of-house-project.jpg",
-    url: ""
+    url: "/daftar-materi?id_gaya_belajar=3"
   },
   {
     no: 4,
@@ -31,7 +31,7 @@ const LIST_MATERI = [
       "Consequat sit quis tempor nulla fugiat et est pariatur occaecat exercitation.",
     img:
       "https://previews.123rf.com/images/studio3321/studio33211510/studio3321151000014/46519784-architecture-plans-and-sketch-of-house-project.jpg",
-    url: ""
+    url: "/daftar-materi?id_gaya_belajar=4"
   }
 ];
 
