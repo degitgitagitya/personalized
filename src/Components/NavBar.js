@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 
 import NavLink from "../Components/NavLink";
+import { AuthContext } from "../Contexts/Authentication";
 
 import "./NavBar.css";
+import { withRouter } from "react-router-dom";
 
-export default class NavBar extends Component {
+class NavBar extends Component {
+  static contextType = AuthContext;
+
+  handleLogOut = () => {
+    this.context.changeAuthToFalse();
+    this.props.history.push("/");
+  };
+
   render() {
     return (
       <nav className="navbar  px-md-5 px-sm-0 navbar-expand-lg navbar-dark">
@@ -25,20 +34,34 @@ export default class NavBar extends Component {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto"></ul>
-          <NavLink href="/login">
-            <button className="btn navbar-button-login my-2 my-sm-0">
-              Log In
+        {this.context.isAuth ? (
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto"></ul>
+            <button
+              onClick={this.handleLogOut}
+              className="btn navbar-button-login my-2 my-sm-0"
+            >
+              Log Out
             </button>
-          </NavLink>
-          <NavLink href="/sign-up">
-            <button className="btn navbar-button-sign-up my-2 my-sm-0">
-              Sign Up
-            </button>
-          </NavLink>
-        </div>
+          </div>
+        ) : (
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto"></ul>
+            <NavLink href="/login">
+              <button className="btn navbar-button-login my-2 my-sm-0">
+                Log In
+              </button>
+            </NavLink>
+            <NavLink href="/sign-up">
+              <button className="btn navbar-button-sign-up my-2 my-sm-0">
+                Sign Up
+              </button>
+            </NavLink>
+          </div>
+        )}
       </nav>
     );
   }
 }
+
+export default withRouter(NavBar);

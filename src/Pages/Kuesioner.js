@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 
+import { AuthContext } from "../Contexts/Authentication";
 import NavBar from "../Components/NavBar";
-import NavLink from "../Components/NavLink";
 import PageTitle from "../Components/PageTitle";
 
 import "./Petunjuk.css";
 import "./Kuesioner.css";
+import { withRouter } from "react-router-dom";
 
 class Pertanyaan extends Component {
   render() {
@@ -29,7 +30,9 @@ class Pertanyaan extends Component {
   }
 }
 
-export default class Kuesioner extends Component {
+class Kuesioner extends Component {
+  static contextType = AuthContext;
+
   state = {
     kuesioner: [],
     jawaban: []
@@ -68,6 +71,86 @@ export default class Kuesioner extends Component {
     });
   };
 
+  onClickTampilkanHasil = () => {
+    const { jawaban } = this.state;
+    let arrayTemp = [0, 0, 0, 0];
+    jawaban.forEach(data => {
+      if (data.jawaban === true) {
+        if (data.kunci === 1) {
+          arrayTemp[0]++;
+        } else if (data.kunci === 2) {
+          arrayTemp[1]++;
+        } else if (data.kunci === 3) {
+          arrayTemp[2]++;
+        } else if (data.kunci === 4) {
+          arrayTemp[3]++;
+        }
+      }
+    });
+
+    const indexMax = this.indexOfMax(arrayTemp);
+
+    let gaya;
+
+    if (indexMax === 0) {
+      gaya = 1;
+    } else if (indexMax === 1) {
+      gaya = 2;
+    } else if (indexMax === 2) {
+      gaya = 3;
+    } else if (indexMax === 3) {
+      gaya = 4;
+    }
+
+    this.updateSiswa(gaya);
+  };
+
+  updateSiswa = idGayaBelajar => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      email: this.context.data.email,
+      id_gaya_belajar: idGayaBelajar,
+      id_kelas: "",
+      nama: this.context.data.nama,
+      password: this.context.data.password
+    });
+
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    fetch(`http://127.0.0.1:5000/siswa/${this.context.data.id}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        this.context.changeAuthToTrue(result);
+        this.props.history.push("/hasil");
+      })
+      .catch(error => console.log("error", error));
+  };
+
+  indexOfMax = arr => {
+    if (arr.length === 0) {
+      return -1;
+    }
+
+    let max = arr[0];
+    let maxIndex = 0;
+
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] > max) {
+        maxIndex = i;
+        max = arr[i];
+      }
+    }
+
+    return maxIndex;
+  };
+
   componentDidMount() {
     this.fetchAllKuesioner();
   }
@@ -94,11 +177,12 @@ export default class Kuesioner extends Component {
             })}
             <div className="row justify-content-end">
               <div className="col-md-2">
-                <NavLink href="/hasil">
-                  <button className="btn btn-success mt-2 mt-md-5 kuesioner-button">
-                    Tampilkan Hasil
-                  </button>
-                </NavLink>
+                <button
+                  onClick={this.onClickTampilkanHasil}
+                  className="btn btn-success mt-2 mt-md-5 kuesioner-button"
+                >
+                  Tampilkan Hasil
+                </button>
               </div>
             </div>
           </div>
@@ -107,3 +191,5 @@ export default class Kuesioner extends Component {
     );
   }
 }
+
+export default withRouter(Kuesioner);
