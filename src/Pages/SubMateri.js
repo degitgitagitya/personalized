@@ -21,7 +21,6 @@ export default class SubMateri extends Component {
     fetch(`http://127.0.0.1:5000/submateri/id/${idSubMateri}`, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         this.setState({
           subMateri: result
         });

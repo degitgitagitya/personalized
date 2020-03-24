@@ -14,7 +14,9 @@ const ContentCard = props => {
         <hr />
         <div className="daftar-materi-title">{props.data.judul}</div>
         <div className="daftar-materi-desc">{props.data.keterangan}</div>
-        <NavLink href={`/daftar-sub-materi?id_materi=${props.data.id}`}>
+        <NavLink
+          href={`/daftar-sub-materi?id_gaya_belajar=${props.url}&id_materi=${props.data.id}`}
+        >
           <button className="btn btn-outline-info form-control">
             Mulai Belajar
           </button>
@@ -43,7 +45,6 @@ export default class DaftarMateri extends Component {
     fetch("http://127.0.0.1:5000/materi", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         this.setState({
           listMateri: result,
           idGayaBelajar: idGayaBelajar

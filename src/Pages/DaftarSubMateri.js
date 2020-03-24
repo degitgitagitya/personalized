@@ -62,11 +62,14 @@ export default class DaftarSubMateri extends Component {
     const search = this.props.location.search;
     const params = new URLSearchParams(search);
     const idMateri = params.get("id_materi");
+    const idGayaBelajar = params.get("id_gaya_belajar");
 
-    fetch(`http://127.0.0.1:5000/submateri/${idMateri}`, requestOptions)
+    fetch(
+      `http://127.0.0.1:5000/submateri/${idMateri}/${idGayaBelajar}`,
+      requestOptions
+    )
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         this.setState({
           listSubMateri: result
         });
@@ -87,7 +90,6 @@ export default class DaftarSubMateri extends Component {
     fetch(`http://127.0.0.1:5000/materi/${idMateri}`, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         this.setState({
           materi: result
         });
