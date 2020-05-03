@@ -36,7 +36,24 @@ class NavBar extends Component {
 
         {this.context.isAuth ? (
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto"></ul>
+            <ul className="navbar-nav ml-auto mr-5">
+              <li
+                onClick={() => {
+                  this.props.history.push("/pemilihan-materi");
+                }}
+                className="nav-item mr-5 clickable-item text-white font-weight-bold"
+              >
+                Materi
+              </li>
+              <li
+                onClick={() => {
+                  this.props.history.push("/daftar-evaluasi");
+                }}
+                className="nav-item clickable-item text-white font-weight-bold"
+              >
+                Evaluasi
+              </li>
+            </ul>
             <button
               onClick={this.handleLogOut}
               className="btn navbar-button-login my-2 my-sm-0"

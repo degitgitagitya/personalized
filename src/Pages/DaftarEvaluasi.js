@@ -3,55 +3,77 @@ import React, { Component } from "react";
 import "./DaftarEvaluasi.css";
 import NavBar from "../Components/NavBar";
 import PageTitle from "../Components/PageTitle";
-import NavLink from "../Components/NavLink";
-
-const DATA_CONTENT_EVALUASI = [
-  {
-    no: 1,
-    nama: "Evaluasi 1",
-    jumlah: "10",
-    mulai: "2020-04-10 11:00:00",
-    selesai: "2020-04-10 13:00:00",
-    url: "/soal-evaluasi"
-  },
-  {
-    no: 2,
-    nama: "Evaluasi 2",
-    jumlah: "10",
-    mulai: "2020-04-10 11:00:00",
-    selesai: "2020-04-10 13:00:00",
-    url: "/soal-evaluasi"
-  },
-  {
-    no: 3,
-    nama: "Evaluasi 3",
-    jumlah: "10",
-    mulai: "2020-04-10 11:00:00",
-    selesai: "2020-04-10 13:00:00",
-    url: "/soal-evaluasi"
-  }
-];
-
-const ContentEvaluasi = props => {
-  return (
-    <tr>
-      <td>{props.data.nama}</td>
-      <td>{props.data.jumlah}</td>
-      <td>{props.data.mulai}</td>
-      <td>{props.data.selesai}</td>
-      <td>
-        <NavLink href={props.data.url}>
-          <button className="btn btn-info">Mulai</button>
-        </NavLink>
-      </td>
-    </tr>
-  );
-};
+import ReactTable from "../Components/ReactTable";
 
 export default class DaftarEvaluasi extends Component {
   state = {
-    contentEvaluasi: DATA_CONTENT_EVALUASI
+    head: [
+      {
+        Header: "Evaluasi",
+        columns: [
+          {
+            Header: "No",
+            Cell: ({ row }) => <div>{row.index + 1}</div>,
+          },
+          {
+            Header: "Nama Evaluasi",
+            accessor: "mata_pelajaran",
+            sortType: "basic",
+          },
+          {
+            Header: "Durasi",
+            accessor: "durasi",
+            sortType: "basic",
+            Cell: ({ row }) => <div>{row.original.durasi} Menit</div>,
+          },
+          {
+            Header: "Action",
+            accessor: "id",
+            Cell: ({ row }) => (
+              <div>
+                <button
+                  onClick={() => {
+                    this.handleClickMulai(row.original);
+                  }}
+                  className="btn btn-success"
+                >
+                  Mulai
+                </button>
+              </div>
+            ),
+          },
+        ],
+      },
+    ],
+    body: [],
   };
+
+  handleClickMulai = (data) => {
+    this.props.history.push(
+      `/soal-evaluasi?x=${data.id}&y=${data.mata_pelajaran}`
+    );
+  };
+
+  fetchUjian = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`${process.env.REACT_APP_API_URL}/ujian`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        this.setState({
+          body: result,
+        });
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  componentDidMount() {
+    this.fetchUjian();
+  }
+
   render() {
     return (
       <div>
@@ -59,27 +81,10 @@ export default class DaftarEvaluasi extends Component {
         <PageTitle title={"Daftar Evaluasi"}></PageTitle>
         <div className="container">
           <div className="daftar-evaluasi-container">
-            <table className="table">
-              <thead>
-                <tr>
-                  <td>Evaluasi</td>
-                  <td>Jumlah Soal</td>
-                  <td>Waktu Mulai</td>
-                  <td>Waktu Selesai</td>
-                  <td>Aksi</td>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.contentEvaluasi.map(data => {
-                  return (
-                    <ContentEvaluasi
-                      data={data}
-                      key={data.no}
-                    ></ContentEvaluasi>
-                  );
-                })}
-              </tbody>
-            </table>
+            <ReactTable
+              head={this.state.head}
+              body={this.state.body}
+            ></ReactTable>
           </div>
         </div>
       </div>

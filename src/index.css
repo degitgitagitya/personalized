@@ -22,3 +22,8 @@ code {
   background-image: linear-gradient(to right, #4cc0d3, #2c7dd0);
   overflow-x: hidden;
 }
+
+.clickable-item:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
