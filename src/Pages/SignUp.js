@@ -13,38 +13,46 @@ class SignUp extends Component {
     inputEmail: "",
     inputPassword: "",
     inputConfirm: "",
+    inputKelas: "",
     error: false,
-    errorMsg: ""
+    errorMsg: "",
+    listKelas: [],
   };
 
-  onChangeNama = event => {
+  onChangeNama = (event) => {
     this.setState({
-      inputNama: event.target.value
+      inputNama: event.target.value,
     });
   };
 
-  onChangeEmail = event => {
+  onChangeEmail = (event) => {
     this.setState({
-      inputEmail: event.target.value
+      inputEmail: event.target.value,
     });
   };
 
-  onChangePassword = event => {
+  onChangePassword = (event) => {
     this.setState({
-      inputPassword: event.target.value
+      inputPassword: event.target.value,
     });
   };
 
-  onChangeConfirm = event => {
+  onChangeConfirm = (event) => {
     this.setState({
-      inputConfirm: event.target.value
+      inputConfirm: event.target.value,
     });
   };
 
-  toggleError = msg => {
+  onChangeKelas = (event) => {
+    this.setState({
+      inputKelas: event.target.value,
+    });
+  };
+
+  toggleError = (msg) => {
     this.setState({
       error: true,
-      errorMsg: msg
+      errorMsg: msg,
     });
   };
 
@@ -58,12 +66,19 @@ class SignUp extends Component {
   };
 
   checkNull = () => {
-    const { inputNama, inputEmail, inputPassword, inputConfirm } = this.state;
+    const {
+      inputNama,
+      inputEmail,
+      inputPassword,
+      inputConfirm,
+      inputKelas,
+    } = this.state;
     if (
       inputNama === "" ||
       inputEmail === "" ||
       inputPassword === "" ||
-      inputConfirm === ""
+      inputConfirm === "" ||
+      inputKelas === ""
     ) {
       return false;
     } else {
@@ -78,30 +93,46 @@ class SignUp extends Component {
     const raw = JSON.stringify({
       email: this.state.inputEmail,
       id_gaya_belajar: "",
-      id_kelas: "",
+      id_kelas: this.state.inputKelas,
       nama: this.state.inputNama,
-      password: this.state.inputPassword
+      password: this.state.inputPassword,
     });
 
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: "follow"
+      redirect: "follow",
     };
 
-    fetch("http://127.0.0.1:5000/siswa", requestOptions)
-      .then(response => response.json())
-      .then(result => {
+    fetch(`${process.env.REACT_APP_API_URL}/siswa`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
         this.props.history.push("/login");
       })
-      .catch(error => console.log("error", error));
+      .catch((error) => console.log("error", error));
   };
 
-  handleKeyPress = event => {
+  handleKeyPress = (event) => {
     if (event.key === "Enter") {
       this.handleSignUpButton();
     }
+  };
+
+  componentDidMount = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`${process.env.REACT_APP_API_URL}/kelases`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        this.setState({
+          listKelas: result,
+        });
+      })
+      .catch((error) => console.log("error", error));
   };
 
   render() {
@@ -136,6 +167,27 @@ class SignUp extends Component {
                 placeholder="Email"
                 type="email"
               />
+
+              <label className="label-control" htmlFor="kelas">
+                Kelas
+              </label>
+              <select
+                className="form-control login-input"
+                name="kelas"
+                id="kelas"
+                onChange={this.onChangeKelas}
+                value={this.state.inputKelas}
+              >
+                <option value="0">Pilih Kelas</option>
+                {this.state.listKelas.map((data) => {
+                  return (
+                    <option value={data.id} key={data.id}>
+                      {data.nama}
+                    </option>
+                  );
+                })}
+              </select>
+
               <label className="label-control" htmlFor="password">
                 Password
               </label>

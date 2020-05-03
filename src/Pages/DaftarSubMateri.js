@@ -5,30 +5,7 @@ import NavLink from "../Components/NavLink";
 
 import "./DaftarSubMateri.css";
 
-const DATA_SUB_MATERI = [
-  {
-    no: 1,
-    nama: "Nama Materi",
-    url: "/sub-materi"
-  },
-  {
-    no: 2,
-    nama: "Nama Materi",
-    url: "/sub-materi"
-  },
-  {
-    no: 3,
-    nama: "Nama Materi",
-    url: "/sub-materi"
-  },
-  {
-    no: 4,
-    nama: "Nama Materi",
-    url: "/sub-materi"
-  }
-];
-
-const ContentSubMateri = props => {
+const ContentSubMateri = (props) => {
   return (
     <div className="daftar-sub-materi-card-container">
       <div className="daftar-sub-materi-card">
@@ -50,13 +27,13 @@ const ContentSubMateri = props => {
 export default class DaftarSubMateri extends Component {
   state = {
     listSubMateri: [],
-    materi: {}
+    materi: {},
   };
 
   fetchDataListSubMateri = () => {
     var requestOptions = {
       method: "GET",
-      redirect: "follow"
+      redirect: "follow",
     };
 
     const search = this.props.location.search;
@@ -68,19 +45,19 @@ export default class DaftarSubMateri extends Component {
       `http://127.0.0.1:5000/submateri/${idMateri}/${idGayaBelajar}`,
       requestOptions
     )
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         this.setState({
-          listSubMateri: result
+          listSubMateri: result,
         });
       })
-      .catch(error => console.log("error", error));
+      .catch((error) => console.log("error", error));
   };
 
   fetchDataMateri = () => {
     const requestOptions = {
       method: "GET",
-      redirect: "follow"
+      redirect: "follow",
     };
 
     const search = this.props.location.search;
@@ -88,13 +65,13 @@ export default class DaftarSubMateri extends Component {
     const idMateri = params.get("id_materi");
 
     fetch(`http://127.0.0.1:5000/materi/${idMateri}`, requestOptions)
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         this.setState({
-          materi: result
+          materi: result,
         });
       })
-      .catch(error => console.log("error", error));
+      .catch((error) => console.log("error", error));
   };
 
   componentDidMount() {
