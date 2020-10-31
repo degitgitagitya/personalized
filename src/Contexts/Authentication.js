@@ -1,11 +1,18 @@
-import React, { createContext, Component } from "react";
+import React, { createContext, Component } from 'react';
 
 export const AuthContext = createContext();
 
 export default class Authentication extends Component {
   state = {
-    isAuth: false,
-    data: [],
+    isAuth: true,
+    data: {
+      email: 'toto@gmail.com',
+      id: 2,
+      id_gaya_belajar: 3,
+      id_kelas: '4',
+      nama: 'Toto Karnavian',
+      password: 'password',
+    },
   };
 
   changeAuthToFalse = () => {
