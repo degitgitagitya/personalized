@@ -32,7 +32,7 @@ export default class DaftarSubMateri extends Component {
   };
 
   fetchDataListSubMateri = () => {
-    var requestOptions = {
+    const requestOptions = {
       method: 'GET',
       redirect: 'follow',
     };

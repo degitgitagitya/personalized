@@ -4,6 +4,7 @@ import PageTitle from '../Components/PageTitle';
 import styled from 'styled-components';
 import parse from 'html-react-parser';
 import { withRouter } from 'react-router-dom';
+import { AuthContext } from '../Contexts/Authentication';
 
 const HoverButton = styled.div`
   ${this}:hover {
@@ -12,24 +13,23 @@ const HoverButton = styled.div`
   }
 `;
 
-const Question = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const Answer = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
 const QuestionComponent = (props) => {
   let Html = ``;
-
-  let source = Question;
+  let source = props.question;
   if (props.target !== 'question') {
-    source = Answer;
+    source = props.answer;
   }
-
   source.forEach((data, index) => {
     if (index % 4 === 0) {
       Html = Html + `<div class='d-flex justify-content-center mb-3'>`;
     }
     if (index % 4 === 3) {
       if (data === 1) {
-        Html = Html + `<i class='fa fa-circle text-danger fa-2x'></i>`;
+        if (index === props.start) {
+          Html = Html + `<i class='fa fa-circle text-success fa-2x'></i>`;
+        } else {
+          Html = Html + `<i class='fa fa-circle text-danger fa-2x'></i>`;
+        }
         Html = Html + `</div>`;
       } else {
         Html = Html + `<i class='fa fa-circle fa-2x'></i>`;
@@ -37,7 +37,11 @@ const QuestionComponent = (props) => {
       }
     } else {
       if (data === 1) {
-        Html = Html + `<i class='fa fa-circle text-danger fa-2x mr-3'></i>`;
+        if (index === props.start) {
+          Html = Html + `<i class='fa fa-circle text-success fa-2x mr-3'></i>`;
+        } else {
+          Html = Html + `<i class='fa fa-circle text-danger fa-2x mr-3'></i>`;
+        }
       } else {
         Html = Html + `<i class='fa fa-circle fa-2x mr-3'></i>`;
       }
@@ -131,20 +135,51 @@ const ClickAble = (props) => {
 };
 
 class FunctionContent extends Component {
+  static contextType = AuthContext;
+
   state = {
+    id: 0,
     title: '',
     userAnswer: [],
     functionList: [],
     isFunction: false,
+    question: [],
+    answer: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    start: 0,
+  };
+
+  fetchQuestion = (id) => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    fetch(
+      `${process.env.REACT_APP_API_URL}/function-content/${id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        const question = result.question.split(',');
+        let final = [];
+        question.forEach((data) => {
+          final.push(parseInt(data));
+        });
+        this.setState({
+          title: result.name,
+          question: final,
+          start: result.start,
+          id: result.id,
+        });
+      })
+      .catch((error) => console.log('error', error));
   };
 
   componentDidMount() {
     const search = this.props.location.search;
     const params = new URLSearchParams(search);
-    const title = params.get('title');
-    this.setState({
-      title: title,
-    });
+    const id = params.get('id');
+    this.fetchQuestion(id);
   }
 
   setAnswer = (answer) => {
@@ -170,9 +205,82 @@ class FunctionContent extends Component {
     });
   };
 
+  submitAnswer = () => {
+    const { userAnswer, answer, functionList, start, question } = this.state;
+    let tempAnswer = answer;
+    tempAnswer[start] = 1;
+    let pivot = start;
+    userAnswer.forEach((data) => {
+      if (data === 'function') {
+        functionList.forEach((element) => {
+          if (element === 'left') {
+            pivot = pivot - 1;
+          } else if (element === 'right') {
+            pivot = pivot + 1;
+          } else if (element === 'up') {
+            pivot = pivot - 4;
+          } else if (element === 'down') {
+            pivot = pivot + 4;
+          }
+          tempAnswer[pivot] = 1;
+        });
+      } else {
+        if (data === 'left') {
+          pivot = pivot - 1;
+        } else if (data === 'right') {
+          pivot = pivot + 1;
+        } else if (data === 'up') {
+          pivot = pivot - 4;
+        } else if (data === 'down') {
+          pivot = pivot + 4;
+        }
+        tempAnswer[pivot] = 1;
+      }
+    });
+    let status = 0;
+    if (JSON.stringify(tempAnswer) === JSON.stringify(question)) {
+      status = 1;
+    }
+    this.postAnswer(status, answer);
+  };
+
+  postAnswer = (status, answer) => {
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    let tempAnswer = JSON.stringify(answer);
+    tempAnswer = tempAnswer.replace('[', '');
+    tempAnswer = tempAnswer.replace(']', '');
+    const raw = JSON.stringify({
+      id_function_content: this.state.id,
+      id_siswa: this.context.data.id,
+      status: status,
+      answer: tempAnswer,
+    });
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+    fetch(
+      `${process.env.REACT_APP_API_URL}/function-content/answer`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error));
+  };
+
   render() {
-    const { title, userAnswer, functionList, isFunction } = this.state;
-    console.log(this.state.userAnswer);
+    const {
+      title,
+      userAnswer,
+      functionList,
+      isFunction,
+      question,
+      answer,
+      start,
+    } = this.state;
     return (
       <div>
         <NavBar></NavBar>
@@ -197,16 +305,29 @@ class FunctionContent extends Component {
               <div className='col-10'>
                 <div className='row'>
                   <div className='col-6'>
-                    <QuestionComponent target='question' />
+                    <QuestionComponent
+                      start={start}
+                      answer={answer}
+                      question={question}
+                      target='question'
+                    />
                   </div>
                   <div className='col-6'>
-                    <QuestionComponent target='answer' />
+                    <QuestionComponent
+                      start={start}
+                      answer={answer}
+                      question={question}
+                      target='answer'
+                    />
                   </div>
                 </div>
 
                 <hr />
                 <div className='d-flex justify-content-end mt-3'>
-                  <HoverButton className='bg-white rounded-circle p-3 d-flex align-items-center justify-content-center shadow-sm border border-light'>
+                  <HoverButton
+                    onClick={this.submitAnswer}
+                    className='bg-white rounded-circle p-3 d-flex align-items-center justify-content-center shadow-sm border border-light'
+                  >
                     <i className='fa fa-play text-dark'></i>
                   </HoverButton>
                 </div>

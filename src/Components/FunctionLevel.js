@@ -13,23 +13,49 @@ const StyledLevelList = styled.div`
 `;
 
 class FunctionLevel extends Component {
-  goToContent = (title) => {
-    this.props.history.push(`/function-content?title=${title}`);
+  state = {
+    listContent: [],
   };
 
+  goToContent = (title, id) => {
+    this.props.history.push(`/function-content?title=${title}&id=${id}`);
+  };
+
+  componentDidMount() {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    fetch(`${process.env.REACT_APP_API_URL}/function-content`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        this.setState({
+          listContent: result.listContent,
+        });
+      })
+      .catch((error) => console.log('error', error));
+  }
+
   render() {
+    const { listContent } = this.state;
     return (
       <div>
         <div className='d-flex flex-wrap'>
-          <StyledLevelList
-            onClick={() => {
-              this.goToContent('Level 1');
-            }}
-            style={{ margin: '10px' }}
-            className='bg-white shadow-sm p-3'
-          >
-            Level 1
-          </StyledLevelList>
+          {listContent.map((data) => {
+            return (
+              <StyledLevelList
+                key={data.id}
+                onClick={() => {
+                  this.goToContent(data.name, data.id);
+                }}
+                style={{ margin: '10px' }}
+                className='bg-white shadow-sm p-3'
+              >
+                {data.name}
+              </StyledLevelList>
+            );
+          })}
         </div>
       </div>
     );
