@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import { AuthContext } from '../Contexts/Authentication';
 
 const StyledLevelList = styled.div`
   font-weight: 500;
@@ -13,20 +14,22 @@ const StyledLevelList = styled.div`
 `;
 
 class FunctionLevel extends Component {
+  static contextType = AuthContext;
+
   state = {
     listContent: [],
+    listResult: [],
   };
 
   goToContent = (title, id) => {
     this.props.history.push(`/function-content?title=${title}&id=${id}`);
   };
 
-  componentDidMount() {
+  fetchLevel = () => {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow',
     };
-
     fetch(`${process.env.REACT_APP_API_URL}/function-content`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
@@ -35,15 +38,58 @@ class FunctionLevel extends Component {
         });
       })
       .catch((error) => console.log('error', error));
+  };
+
+  fetchResult = () => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    fetch(
+      `${process.env.REACT_APP_API_URL}/function-content/answer/siswa/${this.context.data.id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        this.setState({
+          listResult: result.list_of_answer,
+        });
+      })
+      .catch((error) => console.log('error', error));
+  };
+
+  componentDidMount() {
+    this.fetchLevel();
+    this.fetchResult();
   }
 
   render() {
-    const { listContent } = this.state;
+    const { listContent, listResult } = this.state;
+    console.log(listContent);
+    console.log(listResult);
     return (
       <div>
+        <div
+          className='alert alert-info mb-1 rounded-0'
+          style={{ marginLeft: '0.6rem', marginRight: '0.6rem' }}
+          role='alert'
+        >
+          <button
+            onClick={() => {
+              this.props.history.push(
+                '/petunjuk-video?url=https://youtu.be/lhMKvyLRWo0'
+              );
+            }}
+            className='btn btn-light'
+          >
+            <i className='fa fa-question-circle mr-2'></i> Petunjuk
+          </button>
+        </div>
+
         <div className='d-flex flex-wrap'>
           {listContent.map((data) => {
-            return (
+            let x = (
               <StyledLevelList
                 key={data.id}
                 onClick={() => {
@@ -55,6 +101,24 @@ class FunctionLevel extends Component {
                 {data.name}
               </StyledLevelList>
             );
+
+            listResult.forEach((element) => {
+              if (data.id === element.id_function_content) {
+                x = (
+                  <StyledLevelList
+                    key={data.id}
+                    onClick={() => {
+                      this.goToContent(data.name, data.id);
+                    }}
+                    style={{ margin: '10px' }}
+                    className='bg-success text-white shadow-sm p-3'
+                  >
+                    {data.name}
+                  </StyledLevelList>
+                );
+              }
+            });
+            return x;
           })}
         </div>
       </div>

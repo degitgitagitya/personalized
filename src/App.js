@@ -20,6 +20,7 @@ import SoalEvaluasi from './Pages/SoalEvaluasi';
 import HasilEvaluasi from './Pages/HasilEvaluasi';
 import NotFound from './Pages/NotFound';
 import FunctionContent from './Pages/FunctionContent';
+import PetunjukVideo from './Pages/PetunjukVideo';
 
 export default function App() {
   return (
@@ -90,6 +91,11 @@ export default function App() {
             exact
             path='/function-content'
             component={FunctionContent}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path='/petunjuk-video'
+            component={PetunjukVideo}
           ></ProtectedRoute>
           <Route path='*' component={() => <NotFound />} />
         </Switch>

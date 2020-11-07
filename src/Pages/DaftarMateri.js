@@ -1,23 +1,23 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import NavBar from "../Components/NavBar";
-import PageTitle from "../Components/PageTitle";
-import NavLink from "../Components/NavLink";
+import NavBar from '../Components/NavBar';
+import PageTitle from '../Components/PageTitle';
+import NavLink from '../Components/NavLink';
 
-import "./DaftarMateri.css";
+import './DaftarMateri.css';
 
-const ContentCard = props => {
+const ContentCard = (props) => {
   return (
-    <div className="daftar-materi-card-container">
-      <div className="daftar-materi-card">
-        <div className="daftar-materi-label">Materi</div>
+    <div className='daftar-materi-card-container'>
+      <div className='daftar-materi-card'>
+        <div className='daftar-materi-label'>Materi</div>
         <hr />
-        <div className="daftar-materi-title">{props.data.judul}</div>
-        <div className="daftar-materi-desc">{props.data.keterangan}</div>
+        <div className='daftar-materi-title'>{props.data.judul}</div>
+        <div className='daftar-materi-desc'>{props.data.keterangan}</div>
         <NavLink
-          href={`/daftar-sub-materi?id_gaya_belajar=${props.url}&id_materi=${props.data.id}`}
+          href={`/daftar-sub-materi?id_gaya_belajar=${props.url}&id_materi=${props.data.id}&judul=${props.data.judul}`}
         >
-          <button className="btn btn-outline-info form-control">
+          <button className='btn btn-outline-info form-control'>
             Mulai Belajar
           </button>
         </NavLink>
@@ -29,28 +29,28 @@ const ContentCard = props => {
 export default class DaftarMateri extends Component {
   state = {
     listMateri: [],
-    idGayaBelajar: null
+    idGayaBelajar: null,
   };
 
   fetchDataListMateri = () => {
     const requestOptions = {
-      method: "GET",
-      redirect: "follow"
+      method: 'GET',
+      redirect: 'follow',
     };
 
     const search = this.props.location.search;
     const params = new URLSearchParams(search);
-    const idGayaBelajar = params.get("id_gaya_belajar");
+    const idGayaBelajar = params.get('id_gaya_belajar');
 
-    fetch("http://127.0.0.1:5000/materi", requestOptions)
-      .then(response => response.json())
-      .then(result => {
+    fetch('http://127.0.0.1:5000/materi', requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
         this.setState({
           listMateri: result,
-          idGayaBelajar: idGayaBelajar
+          idGayaBelajar: idGayaBelajar,
         });
       })
-      .catch(error => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   componentDidMount() {
@@ -61,9 +61,9 @@ export default class DaftarMateri extends Component {
     return (
       <div>
         <NavBar></NavBar>
-        <PageTitle title={"Daftar Materi"}></PageTitle>
-        <div className="container">
-          {this.state.listMateri.map(data => {
+        <PageTitle title={'Daftar Materi'}></PageTitle>
+        <div className='container'>
+          {this.state.listMateri.map((data) => {
             return (
               <ContentCard
                 url={this.state.idGayaBelajar}

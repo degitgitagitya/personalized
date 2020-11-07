@@ -29,6 +29,7 @@ export default class DaftarSubMateri extends Component {
   state = {
     listSubMateri: [],
     materi: {},
+    judul: '',
   };
 
   fetchDataListSubMateri = () => {
@@ -78,6 +79,12 @@ export default class DaftarSubMateri extends Component {
   componentDidMount() {
     this.fetchDataListSubMateri();
     this.fetchDataMateri();
+    const search = this.props.location.search;
+    const params = new URLSearchParams(search);
+    const judul = params.get('judul');
+    this.setState({
+      judul: judul,
+    });
   }
 
   render() {
@@ -121,7 +128,7 @@ export default class DaftarSubMateri extends Component {
               );
             })}
           </div>
-          <FunctionLevel />
+          {this.state.judul === 'Fungsi' ? <FunctionLevel /> : 'test'}
         </div>
       </div>
     );

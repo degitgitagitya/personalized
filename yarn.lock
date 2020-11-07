@@ -1401,12 +1401,17 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.5.3.tgz#4982b0b66b7a4cf949b86f5d25a8cf757d3cfd9d"
   integrity sha512-RFwCobxsvZ6j7twS7dHIZQZituMIDJJNHS/qY6iuthVebxS3zhRY+jaC2roEKiAYaVuTcGmX6Luc6YBcf6zJVg==
 
+"@popperjs/core@^2.5.3":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.5.4.tgz#de25b5da9f727985a3757fd59b5d028aba75841a"
+  integrity sha512-ZpKr+WTb8zsajqgDkvCEWgp6d5eJT6Q63Ng2neTbzBO76Lbe91vX/iVIW9dikq+Fs3yEo+ls4cxeXABD2LtcbQ==
+
 "@restart/context@^2.1.4":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@restart/context/-/context-2.1.4.tgz#a99d87c299a34c28bd85bb489cb07bfd23149c02"
   integrity sha512-INJYZQJP7g+IoDUh/475NlGiTeMfwTXUEr3tmRneckHIxNolGOW9CTq83S8cxq0CgJwwcMzMJFchxvlwe7Rk8Q==
 
-"@restart/hooks@^0.3.12", "@restart/hooks@^0.3.21":
+"@restart/hooks@^0.3.12", "@restart/hooks@^0.3.21", "@restart/hooks@^0.3.25":
   version "0.3.25"
   resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.3.25.tgz#11004139ad1c70d2f5965a8939dcb5aeb96aa652"
   integrity sha512-m2v3N5pxTsIiSH74/sb1yW8D9RxkJidGW+5Mfwn/lHb2QzhZNlaU1su7abSyT9EGf0xS/0waLjrf7/XxQHUk7w==
@@ -3956,7 +3961,7 @@ dom-converter@^0.2:
   dependencies:
     utila "~0.4"
 
-dom-helpers@^5.0.1, dom-helpers@^5.1.0, dom-helpers@^5.1.2:
+dom-helpers@^5.0.1, dom-helpers@^5.1.0, dom-helpers@^5.1.2, dom-helpers@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-5.2.0.tgz#57fd054c5f8f34c52a3eeffdb7e7e93cd357d95b"
   integrity sha512-Ru5o9+V8CpunKnz5LGgWXkmrH/20cGKwcHwS4m73zIvs54CN9epEmT/HLqFJW3kXpakAFkEdzgy1hzlJe3E4OQ==
@@ -4520,6 +4525,11 @@ execa@^1.0.0:
     p-finally "^1.0.0"
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
+
+exenv@^1.2.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 exit@^0.1.2:
   version "0.1.2"
@@ -6935,6 +6945,11 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
+memoize-one@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
+  integrity sha512-HKeeBpWvqiVJD57ZUAsJNm71eHTykffzcLZVYWiVfQeI1rJtuEaS7hQiEpWfVVk18donPwJEcFKIkCmPJNOhHA==
+
 memory-fs@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
@@ -8699,7 +8714,7 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^4.0.0"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8934,6 +8949,11 @@ react-error-overlay@^6.0.7:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.8.tgz#474ed11d04fc6bda3af643447d85e9127ed6b5de"
   integrity sha512-HvPuUQnLp5H7TouGq3kzBeioJmXms1wHy9EGjz2OURWBp4qZO6AfGEcnxts1D/CbwPLRAgTMPCEgYhA3sEM4vw==
 
+react-fast-compare@^3.0.1:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
+  integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+
 react-is@^16.12.0, react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -8944,10 +8964,20 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-react-lifecycles-compat@^3.0.4:
+react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-modal@^3.11.2:
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.11.2.tgz#bad911976d4add31aa30dba8a41d11e21c4ac8a4"
+  integrity sha512-o8gvvCOFaG1T7W6JUvsYjRjMVToLZgLIsi5kdhFIQCtHxDkA47LznX62j+l6YQkpXDbvQegsDyxe/+JJsFQN7w==
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    react-lifecycles-compat "^3.0.0"
+    warning "^4.0.3"
 
 react-overlays@^4.1.0:
   version "4.1.0"
@@ -8963,14 +8993,30 @@ react-overlays@^4.1.0:
     uncontrollable "^7.0.0"
     warning "^4.0.3"
 
-react-player@^1.15.2:
-  version "1.15.3"
-  resolved "https://registry.yarnpkg.com/react-player/-/react-player-1.15.3.tgz#d00cf145f9c86184cb0a071a1fbf8ecb7b68987f"
-  integrity sha512-8fc0R1AipFIy7l4lKgnIg+gMU2IY32ZMxxBlINjXAq/YnN3HUP3hOaE+aQ0lQv+a1/MMZgbekWD86ZGDO7kB8g==
+react-overlays@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-4.1.1.tgz#0060107cbe1c5171a744ccda3fbf0556d064bc5f"
+  integrity sha512-WtJifh081e6M24KnvTQoNjQEpz7HoLxqt8TwZM7LOYIkYJ8i/Ly1Xi7RVte87ZVnmqQ4PFaFiNHZhSINPSpdBQ==
+  dependencies:
+    "@babel/runtime" "^7.12.1"
+    "@popperjs/core" "^2.5.3"
+    "@restart/hooks" "^0.3.25"
+    "@types/warning" "^3.0.0"
+    dom-helpers "^5.2.0"
+    prop-types "^15.7.2"
+    uncontrollable "^7.0.0"
+    warning "^4.0.3"
+
+react-player@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/react-player/-/react-player-2.6.2.tgz#d41fe842f5bd6a2b1d3ce1ba9ed82c3eb26e0df4"
+  integrity sha512-Wi9DynNSVgddKxac5OzsH0Upk6VRYssvLLGgCRw6vsjzqMX6S5N26WDRNYnLaHykxFNtpPSDc53fXDe52hMaCg==
   dependencies:
     deepmerge "^4.0.0"
     load-script "^1.0.0"
+    memoize-one "^5.1.1"
     prop-types "^15.7.2"
+    react-fast-compare "^3.0.1"
 
 react-property@1.0.1:
   version "1.0.1"

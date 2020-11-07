@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import parse from 'html-react-parser';
 import { withRouter } from 'react-router-dom';
 import { AuthContext } from '../Contexts/Authentication';
+import ReactModal from '../Components/ReactModal';
 
 const HoverButton = styled.div`
   ${this}:hover {
@@ -146,6 +147,8 @@ class FunctionContent extends Component {
     question: [],
     answer: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     start: 0,
+    modalOpen: false,
+    status: 0,
   };
 
   fetchQuestion = (id) => {
@@ -242,6 +245,11 @@ class FunctionContent extends Component {
       status = 1;
     }
     this.postAnswer(status, answer);
+    this.setState({
+      answer: answer,
+      status: status,
+      modalOpen: true,
+    });
   };
 
   postAnswer = (status, answer) => {
@@ -280,9 +288,44 @@ class FunctionContent extends Component {
       question,
       answer,
       start,
+      modalOpen,
+      status,
     } = this.state;
     return (
       <div>
+        {/* Modal */}
+        <ReactModal isOpen={modalOpen} title={'Hasil'}>
+          <hr />
+          {status === 1 ? (
+            <>
+              <div className='text-success'>Jawaban Benar</div>
+              <button
+                onClick={() => {
+                  this.props.history.goBack();
+                }}
+                className='btn btn-success mt-3'
+              >
+                Kembali
+              </button>
+            </>
+          ) : (
+            <>
+              <div className='text-danger'>Jawaban Salah</div>
+              <button
+                onClick={() => {
+                  this.setState({
+                    modalOpen: false,
+                  });
+                }}
+                className='btn btn-warning mt-3'
+              >
+                Ulangi
+              </button>
+            </>
+          )}
+        </ReactModal>
+
+        {/* Content */}
         <NavBar></NavBar>
         <PageTitle title={title}></PageTitle>
         <div className='container'>
