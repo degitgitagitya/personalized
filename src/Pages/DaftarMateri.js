@@ -7,6 +7,7 @@ import NavLink from '../Components/NavLink';
 import './DaftarMateri.css';
 import PDFPage from './PDFPage';
 import PPTPage from './PPTPage';
+import VideoList from './VideoList';
 
 const ContentCard = (props) => {
   return (
@@ -67,6 +68,10 @@ export default class DaftarMateri extends Component {
         {this.state.idGayaBelajar === 2 ? (
           <div className='container'>
             <PPTPage />
+          </div>
+        ) : this.state.idGayaBelajar === 3 ? (
+          <div className='container'>
+            <VideoList />
           </div>
         ) : this.state.idGayaBelajar === 4 ? (
           <div className='container'>

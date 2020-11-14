@@ -22,6 +22,7 @@ import NotFound from './Pages/NotFound';
 import FunctionContent from './Pages/FunctionContent';
 import PetunjukVideo from './Pages/PetunjukVideo';
 import PDFReader from './Components/PDFReader';
+import VideoPlayer from './Pages/VideoPlayer';
 
 export default function App() {
   return (
@@ -102,6 +103,11 @@ export default function App() {
             exact
             path='/pdf-reader'
             component={PDFReader}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path='/video-player'
+            component={VideoPlayer}
           ></ProtectedRoute>
           <Route path='*' component={() => <NotFound />} />
         </Switch>
