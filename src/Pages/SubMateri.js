@@ -18,7 +18,10 @@ export default class SubMateri extends Component {
     const params = new URLSearchParams(search);
     const idSubMateri = params.get('id_sub_materi');
 
-    fetch(`http://127.0.0.1:5000/submateri/id/${idSubMateri}`, requestOptions)
+    fetch(
+      `${process.env.REACT_APP_API_URL}/submateri/id/${idSubMateri}`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         this.setState({

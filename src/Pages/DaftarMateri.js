@@ -5,6 +5,8 @@ import PageTitle from '../Components/PageTitle';
 import NavLink from '../Components/NavLink';
 
 import './DaftarMateri.css';
+import PDFPage from './PDFPage';
+import PPTPage from './PPTPage';
 
 const ContentCard = (props) => {
   return (
@@ -42,12 +44,12 @@ export default class DaftarMateri extends Component {
     const params = new URLSearchParams(search);
     const idGayaBelajar = params.get('id_gaya_belajar');
 
-    fetch('http://127.0.0.1:5000/materi', requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/materi`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         this.setState({
           listMateri: result,
-          idGayaBelajar: idGayaBelajar,
+          idGayaBelajar: parseInt(idGayaBelajar),
         });
       })
       .catch((error) => console.log('error', error));
@@ -62,17 +64,27 @@ export default class DaftarMateri extends Component {
       <div>
         <NavBar></NavBar>
         <PageTitle title={'Daftar Materi'}></PageTitle>
-        <div className='container'>
-          {this.state.listMateri.map((data) => {
-            return (
-              <ContentCard
-                url={this.state.idGayaBelajar}
-                key={data.id}
-                data={data}
-              ></ContentCard>
-            );
-          })}
-        </div>
+        {this.state.idGayaBelajar === 2 ? (
+          <div className='container'>
+            <PPTPage />
+          </div>
+        ) : this.state.idGayaBelajar === 4 ? (
+          <div className='container'>
+            <PDFPage />
+          </div>
+        ) : (
+          <div className='container'>
+            {this.state.listMateri.map((data) => {
+              return (
+                <ContentCard
+                  url={this.state.idGayaBelajar}
+                  key={data.id}
+                  data={data}
+                ></ContentCard>
+              );
+            })}
+          </div>
+        )}
       </div>
     );
   }

@@ -1,28 +1,28 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { AuthContext } from "../Contexts/Authentication";
-import NavBar from "../Components/NavBar";
-import PageTitle from "../Components/PageTitle";
+import { AuthContext } from '../Contexts/Authentication';
+import NavBar from '../Components/NavBar';
+import PageTitle from '../Components/PageTitle';
 
-import "./Petunjuk.css";
-import "./Kuesioner.css";
-import { withRouter } from "react-router-dom";
+import './Petunjuk.css';
+import './Kuesioner.css';
+import { withRouter } from 'react-router-dom';
 
 class Pertanyaan extends Component {
   render() {
     return (
-      <div className="row mb-4">
-        <div className="col-md-10">
+      <div className='row mb-4'>
+        <div className='col-md-10'>
           {this.props.no}. {this.props.pertanyaan}
         </div>
         <div
           onClick={() => {
             this.props.changeAnswer(this.props.index);
           }}
-          className="col-md-2"
+          className='col-md-2'
         >
-          <div className="kuesioner-check text-center">
-            {this.props.jawaban.jawaban ? "Ya" : ""}
+          <div className='kuesioner-check text-center'>
+            {this.props.jawaban.jawaban ? 'Ya' : ''}
           </div>
         </div>
       </div>
@@ -35,46 +35,46 @@ class Kuesioner extends Component {
 
   state = {
     kuesioner: [],
-    jawaban: []
+    jawaban: [],
   };
 
   fetchAllKuesioner = () => {
     const requestOptions = {
-      method: "GET",
-      redirect: "follow"
+      method: 'GET',
+      redirect: 'follow',
     };
 
-    fetch("http://127.0.0.1:5000/kuesioners", requestOptions)
-      .then(response => response.json())
-      .then(result => {
+    fetch(`${process.env.REACT_APP_API_URL}/kuesioners`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
         let x = [];
-        result.forEach(data => {
+        result.forEach((data) => {
           x.push({
             id: data.id,
             jawaban: false,
-            kunci: data.id_gaya_belajar
+            kunci: data.id_gaya_belajar,
           });
         });
         this.setState({
           kuesioner: result,
-          jawaban: x
+          jawaban: x,
         });
       })
-      .catch(error => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
-  changeAnswer = id => {
+  changeAnswer = (id) => {
     let x = this.state.jawaban;
     x[id].jawaban = !x[id].jawaban;
     this.setState({
-      jawaban: x
+      jawaban: x,
     });
   };
 
   onClickTampilkanHasil = () => {
     const { jawaban } = this.state;
     let arrayTemp = [0, 0, 0, 0];
-    jawaban.forEach(data => {
+    jawaban.forEach((data) => {
       if (data.jawaban === true) {
         if (data.kunci === 1) {
           arrayTemp[0]++;
@@ -105,35 +105,38 @@ class Kuesioner extends Component {
     this.updateSiswa(gaya);
   };
 
-  updateSiswa = idGayaBelajar => {
+  updateSiswa = (idGayaBelajar) => {
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Content-Type', 'application/json');
 
     const raw = JSON.stringify({
       email: this.context.data.email,
       id_gaya_belajar: idGayaBelajar,
-      id_kelas: "",
+      id_kelas: '',
       nama: this.context.data.nama,
-      password: this.context.data.password
+      password: this.context.data.password,
     });
 
     const requestOptions = {
-      method: "PUT",
+      method: 'PUT',
       headers: myHeaders,
       body: raw,
-      redirect: "follow"
+      redirect: 'follow',
     };
 
-    fetch(`http://127.0.0.1:5000/siswa/${this.context.data.id}`, requestOptions)
-      .then(response => response.json())
-      .then(result => {
+    fetch(
+      `${process.env.REACT_APP_API_URL}/siswa/${this.context.data.id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
         this.context.changeAuthToTrue(result);
-        this.props.history.push("/hasil");
+        this.props.history.push('/hasil');
       })
-      .catch(error => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
-  indexOfMax = arr => {
+  indexOfMax = (arr) => {
     if (arr.length === 0) {
       return -1;
     }
@@ -159,9 +162,9 @@ class Kuesioner extends Component {
     return (
       <div>
         <NavBar></NavBar>
-        <PageTitle title={"Kuisioner Gaya Belajar"}></PageTitle>
-        <div className="petunjuk-container">
-          <div className="container py-5">
+        <PageTitle title={'Kuisioner Gaya Belajar'}></PageTitle>
+        <div className='petunjuk-container'>
+          <div className='container py-5'>
             {this.state.kuesioner.map((data, index) => {
               return (
                 <Pertanyaan
@@ -175,11 +178,11 @@ class Kuesioner extends Component {
                 ></Pertanyaan>
               );
             })}
-            <div className="row justify-content-end">
-              <div className="col-md-2">
+            <div className='row justify-content-end'>
+              <div className='col-md-2'>
                 <button
                   onClick={this.onClickTampilkanHasil}
-                  className="btn btn-success mt-2 mt-md-5 kuesioner-button"
+                  className='btn btn-success mt-2 mt-md-5 kuesioner-button'
                 >
                   Tampilkan Hasil
                 </button>

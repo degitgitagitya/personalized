@@ -54,7 +54,7 @@ export default class PemilihanMateri extends Component {
     return (
       <div>
         <NavBar></NavBar>
-        <PageTitle title='Pemilihan Materi'></PageTitle>
+        <PageTitle title='Gaya Belajar'></PageTitle>
         <div className='container mt-2 mt-md-4'>
           <div className='materi-card-container'>
             {this.state.dataMateri.map((data) => {

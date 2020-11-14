@@ -21,6 +21,7 @@ import HasilEvaluasi from './Pages/HasilEvaluasi';
 import NotFound from './Pages/NotFound';
 import FunctionContent from './Pages/FunctionContent';
 import PetunjukVideo from './Pages/PetunjukVideo';
+import PDFReader from './Components/PDFReader';
 
 export default function App() {
   return (
@@ -96,6 +97,11 @@ export default function App() {
             exact
             path='/petunjuk-video'
             component={PetunjukVideo}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path='/pdf-reader'
+            component={PDFReader}
           ></ProtectedRoute>
           <Route path='*' component={() => <NotFound />} />
         </Switch>

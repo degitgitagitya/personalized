@@ -66,10 +66,8 @@ class FunctionLevel extends Component {
 
   render() {
     const { listContent, listResult } = this.state;
-    console.log(listContent);
-    console.log(listResult);
     return (
-      <div>
+      <div className='mt-3'>
         <div
           className='alert alert-info mb-1 rounded-0'
           style={{ marginLeft: '0.6rem', marginRight: '0.6rem' }}

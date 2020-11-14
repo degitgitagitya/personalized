@@ -1,35 +1,36 @@
 import React, { Component } from 'react';
 import NavBar from '../Components/NavBar';
 import PageTitle from '../Components/PageTitle';
-import NavLink from '../Components/NavLink';
+// import NavLink from '../Components/NavLink';
 
 import './DaftarSubMateri.css';
 import FunctionLevel from '../Components/FunctionLevel';
 
-const ContentSubMateri = (props) => {
-  return (
-    <div className='daftar-sub-materi-card-container'>
-      <div className='daftar-sub-materi-card'>
-        <div className='daftar-sub-materi-card-title'>
-          Sub Materi {props.no}
-        </div>
-        <hr />
-        <div className='daftar-sub-materi-card-sub-title'>
-          {props.data.nama}
-        </div>
-        <NavLink href={`/sub-materi?id_sub_materi=${props.data.id}`}>
-          <button className='btn btn-outline-info form-control'>Mulai</button>
-        </NavLink>
-      </div>
-    </div>
-  );
-};
+// const ContentSubMateri = (props) => {
+//   return (
+//     <div className='daftar-sub-materi-card-container'>
+//       <div className='daftar-sub-materi-card'>
+//         <div className='daftar-sub-materi-card-title'>
+//           Sub Materi {props.no}
+//         </div>
+//         <hr />
+//         <div className='daftar-sub-materi-card-sub-title'>
+//           {props.data.nama}
+//         </div>
+//         <NavLink href={`/sub-materi?id_sub_materi=${props.data.id}`}>
+//           <button className='btn btn-outline-info form-control'>Mulai</button>
+//         </NavLink>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default class DaftarSubMateri extends Component {
   state = {
     listSubMateri: [],
     materi: {},
     judul: '',
+    gaya: 0,
   };
 
   fetchDataListSubMateri = () => {
@@ -82,12 +83,15 @@ export default class DaftarSubMateri extends Component {
     const search = this.props.location.search;
     const params = new URLSearchParams(search);
     const judul = params.get('judul');
+    const gaya = params.get('id_gaya_belajar');
     this.setState({
       judul: judul,
+      gaya: parseInt(gaya),
     });
   }
 
   render() {
+    const { judul, gaya } = this.state;
     return (
       <div>
         <NavBar></NavBar>
@@ -117,7 +121,7 @@ export default class DaftarSubMateri extends Component {
               </div>
             </div>
           </div>
-          <div className='daftar-sub-materi-list'>
+          {/* <div className='daftar-sub-materi-list'>
             {this.state.listSubMateri.map((data, index) => {
               return (
                 <ContentSubMateri
@@ -127,8 +131,24 @@ export default class DaftarSubMateri extends Component {
                 ></ContentSubMateri>
               );
             })}
-          </div>
-          {this.state.judul === 'Fungsi' ? <FunctionLevel /> : 'test'}
+          </div> */}
+          {gaya === 1 ? (
+            judul === 'Fungsi' ? (
+              <FunctionLevel />
+            ) : (
+              <div> WIP </div>
+            )
+          ) : gaya === 2 ? (
+            judul === 'Fungsi' ? (
+              <FunctionLevel />
+            ) : (
+              <div> WIP </div>
+            )
+          ) : judul === 'Fungsi' ? (
+            <FunctionLevel />
+          ) : (
+            <div> WIP </div>
+          )}
         </div>
       </div>
     );
