@@ -52,7 +52,7 @@ class VideoList extends Component {
   render() {
     const { videoList } = this.state;
     return (
-      <div className='d-flex'>
+      <div className='d-flex flex-wrap'>
         {videoList.length !== 0
           ? videoList.map((data, index) => {
               return (

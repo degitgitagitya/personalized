@@ -23,6 +23,7 @@ import FunctionContent from './Pages/FunctionContent';
 import PetunjukVideo from './Pages/PetunjukVideo';
 import PDFReader from './Components/PDFReader';
 import VideoPlayer from './Pages/VideoPlayer';
+import SlideShow from './Pages/SlideShow';
 
 export default function App() {
   return (
@@ -108,6 +109,11 @@ export default function App() {
             exact
             path='/video-player'
             component={VideoPlayer}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path='/slide-show'
+            component={SlideShow}
           ></ProtectedRoute>
           <Route path='*' component={() => <NotFound />} />
         </Switch>
