@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  personalize-client:
+    container_name: personalize-client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8010:8010'
