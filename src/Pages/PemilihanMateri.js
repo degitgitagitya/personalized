@@ -37,16 +37,8 @@ export default class PemilihanMateri extends Component {
   };
 
   componentDidMount() {
-    let x = [];
-
-    LIST_MATERI.forEach((data) => {
-      if (this.context.data.id_gaya_belajar === data.no) {
-        x.push(data);
-      }
-    });
-
     this.setState({
-      dataMateri: x,
+      dataMateri: LIST_MATERI,
     });
   }
 
