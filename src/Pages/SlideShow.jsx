@@ -15,6 +15,7 @@ const SlideShow = () => {
       <div className='container'>
         <div className='bg-white shadow-sm p-3 d-flex justify-content-center'>
           <iframe
+            title='slide'
             src={url}
             frameborder='0'
             width='960'
