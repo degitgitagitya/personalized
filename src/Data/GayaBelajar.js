@@ -3,25 +3,25 @@ const GAYA_BELAJAR = [
     id: 1,
     nama: 'Accommodator',
     keterangan:
-      'Officia ex do non proident qui aliqua voluptate ut esse deserunt. Mollit amet labore officia nostrud Lorem voluptate eiusmod nulla velit officia aliqua. Laborum amet irure veniam sint magna cupidatat tempor mollit. Eiusmod labore nostrud irure non aliqua Lorem culpa ipsum nulla enim enim excepteur quis cillum. Cupidatat officia adipisicing quis Lorem incididunt dolore ex. Et mollit amet veniam elit sunt nulla reprehenderit nulla.',
+      'Seorang individu dengan gaya accomadtor memiliki kemampuan untuk belajar terutama dari pengalaman "langsung". Kecenderungan mereka mungkin untuk bertindak berdasarkan perasaan "mendalam" daripada analisis logis. Dalam situasi pembelajaran formal, orang-orang dengan gaya belajar accomodator lebih suka bekerja dengan orang lain untuk menyelesaikan tugas, menetapkan tujuan, melakukan kerja lapangan, dan menguji pendekatan yang berbeda untuk menyelesaikan proyek. Gaya belajar accomodator adalah hands-on, lebih mengandalkan intuisi daripada logika.',
   },
   {
     id: 2,
     nama: 'Diverger',
     keterangan:
-      'Do ex incididunt nisi proident incididunt laboris aliquip officia commodo ad. Reprehenderit qui labore qui et sunt ipsum officia non sit officia minim ea pariatur proident. Excepteur dolor consequat ullamco pariatur id fugiat cillum. Duis anim minim exercitation exercitation voluptate excepteur magna do occaecat ad ullamco exercitation. Nostrud pariatur pariatur dolore officia quis reprehenderit ipsum qui.',
+      'Individu dengan gaya diverger paling baik dalam melihat situasi konkret dari berbagai sudut pandang. Dalam situasi pembelajaran, orang-orang dengan gaya diverger lebih suka bekerja dalam kelompok, dan mendengarkan dengan pikiran terbuka. Orang dengan tipe gaya belajar ini lebih memilih menonton dibandingkan praktik, serta cenderung mengumpulkan informasi dengan menggunakan imaginasi untuk menyelesaikan masalah.',
   },
   {
     id: 3,
     nama: 'Assimilator',
     keterangan:
-      'Ex ut sunt non laboris deserunt. Lorem pariatur consectetur incididunt velit labore amet nulla id. Cillum consequat consectetur adipisicing adipisicing duis in laborum fugiat sunt do esse cupidatat. Quis ut ad sit aute ullamco tempor excepteur qui dolor do. Proident magna ex dolore labore anim in deserunt laboris. Ut quis laborum duis eu qui exercitation mollit.',
+      'Seorang individu dengan gaya asimilator paling baik dalam memahami berbagai informasi dan memasukkan ke dalam bentuk yang ringkas dan logis. Seseorang dengan tipe gaya belajar Assimilator memerlukan penjelasan yang jelas dari pada praktik. Orang dengan tipe ini lebih memilih belajar dengan mendengarkan ceramah, membaca dan mengexplore kemampuan analisanya.',
   },
   {
     id: 4,
     nama: 'Converger  ',
     keterangan:
-      'Tempor consequat aliquip elit et culpa. Dolor Lorem ea id ipsum do veniam reprehenderit. Deserunt velit consectetur labore cupidatat ullamco et fugiat cillum aliqua ea officia ut.',
+      'Seorang individu dengan gaya converger memiliki kemampuan untuk memecahkan masalah dan membuat keputusan. Dalam situasi pembelajaran formal, orang-orang dengan gaya ini lebih suka bereksperimen dengan ide-ide baru, simulasi, tugas laboratorium, dan aplikasi praktis. Gaya belajar ini lebih mudah memperoleh informasi dengan memproses data berupa teks.',
   },
 ];
 

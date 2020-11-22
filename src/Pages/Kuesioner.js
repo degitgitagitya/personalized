@@ -178,7 +178,10 @@ class Kuesioner extends Component {
                 ></Pertanyaan>
               );
             })}
-            <div className='row justify-content-end'>
+            <div
+              className='row justify-content-end'
+              style={{ marginBottom: '20rem' }}
+            >
               <div className='col-md-2'>
                 <button
                   onClick={this.onClickTampilkanHasil}

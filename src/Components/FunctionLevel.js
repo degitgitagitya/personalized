@@ -76,7 +76,7 @@ class FunctionLevel extends Component {
           <button
             onClick={() => {
               this.props.history.push(
-                '/petunjuk-video?url=https://youtu.be/lhMKvyLRWo0'
+                '/petunjuk-video?url=https://youtu.be/5beG--tD8aM'
               );
             }}
             className='btn btn-light'

@@ -8,7 +8,7 @@ export default class Authentication extends Component {
     // data: {
     //   email: 'toto@gmail.com',
     //   id: 2,
-    //   id_gaya_belajar: 3,
+    //   id_gaya_belajar: 1,
     //   id_kelas: '4',
     //   nama: 'Toto Karnavian',
     //   password: 'password',

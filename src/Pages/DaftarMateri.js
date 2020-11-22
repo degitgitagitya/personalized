@@ -2,32 +2,34 @@ import React, { Component } from 'react';
 
 import NavBar from '../Components/NavBar';
 import PageTitle from '../Components/PageTitle';
-import NavLink from '../Components/NavLink';
+// import NavLink from '../Components/NavLink';
 
 import './DaftarMateri.css';
 import PDFPage from './PDFPage';
 import PPTPage from './PPTPage';
 import VideoList from './VideoList';
+import CodeList from './CodeList';
+import FunctionLevel from '../Components/FunctionLevel';
 
-const ContentCard = (props) => {
-  return (
-    <div className='daftar-materi-card-container'>
-      <div className='daftar-materi-card'>
-        <div className='daftar-materi-label'>Materi</div>
-        <hr />
-        <div className='daftar-materi-title'>{props.data.judul}</div>
-        <div className='daftar-materi-desc'>{props.data.keterangan}</div>
-        <NavLink
-          href={`/daftar-sub-materi?id_gaya_belajar=${props.url}&id_materi=${props.data.id}&judul=${props.data.judul}`}
-        >
-          <button className='btn btn-outline-info form-control'>
-            Mulai Belajar
-          </button>
-        </NavLink>
-      </div>
-    </div>
-  );
-};
+// const ContentCard = (props) => {
+//   return (
+//     <div className='daftar-materi-card-container'>
+//       <div className='daftar-materi-card'>
+//         <div className='daftar-materi-label'>Materi</div>
+//         <hr />
+//         <div className='daftar-materi-title'>{props.data.judul}</div>
+//         <div className='daftar-materi-desc'>{props.data.keterangan}</div>
+//         <NavLink
+//           href={`/daftar-sub-materi?id_gaya_belajar=${props.url}&id_materi=${props.data.id}&judul=${props.data.judul}`}
+//         >
+//           <button className='btn btn-outline-info form-control'>
+//             Mulai Belajar
+//           </button>
+//         </NavLink>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default class DaftarMateri extends Component {
   state = {
@@ -63,8 +65,8 @@ export default class DaftarMateri extends Component {
   render() {
     return (
       <div>
-        <NavBar></NavBar>
-        <PageTitle title={'Daftar Materi'}></PageTitle>
+        <NavBar />
+        <PageTitle title={'Daftar Materi'} />
         {this.state.idGayaBelajar === 2 ? (
           <div className='container'>
             <PPTPage />
@@ -79,15 +81,12 @@ export default class DaftarMateri extends Component {
           </div>
         ) : (
           <div className='container'>
-            {this.state.listMateri.map((data) => {
-              return (
-                <ContentCard
-                  url={this.state.idGayaBelajar}
-                  key={data.id}
-                  data={data}
-                ></ContentCard>
-              );
-            })}
+            <h3 className='text-white'>Pengenalan</h3>
+            <hr className='border-white' />
+            <FunctionLevel />
+            <h3 className='mt-2 text-white'>Materi</h3>
+            <hr className='border-white' />
+            <CodeList />
           </div>
         )}
       </div>

@@ -24,6 +24,9 @@ import PetunjukVideo from './Pages/PetunjukVideo';
 import PDFReader from './Components/PDFReader';
 import VideoPlayer from './Pages/VideoPlayer';
 import SlideShow from './Pages/SlideShow';
+import SubmitCode from './Pages/SubmitCode';
+import ApaItu from './Pages/ApaItu';
+import Tentang from './Pages/Tentang';
 
 export default function App() {
   return (
@@ -34,6 +37,12 @@ export default function App() {
           <Route path='/login' component={Login}></Route>
           <Route path='/sign-up'>
             <SignUp></SignUp>
+          </Route>
+          <Route path='/apa-itu'>
+            <ApaItu></ApaItu>
+          </Route>
+          <Route path='/tentang'>
+            <Tentang></Tentang>
           </Route>
           <ProtectedRoute
             exact
@@ -114,6 +123,11 @@ export default function App() {
             exact
             path='/slide-show'
             component={SlideShow}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path='/submit-code'
+            component={SubmitCode}
           ></ProtectedRoute>
           <Route path='*' component={() => <NotFound />} />
         </Switch>

@@ -43,10 +43,20 @@ export default class PemilihanMateri extends Component {
   }
 
   render() {
+    let gayaBelajar = 'Accommodator';
+    if (this.context.data.id_gaya_belajar === 2) {
+      gayaBelajar = 'Diverger';
+    } else if (this.context.data.id_gaya_belajar === 3) {
+      gayaBelajar = 'Assimilator';
+    } else if (this.context.data.id_gaya_belajar === 4) {
+      gayaBelajar = 'Converger';
+    }
     return (
       <div>
         <NavBar></NavBar>
-        <PageTitle title='Gaya Belajar'></PageTitle>
+        <PageTitle
+          title={`Gaya Belajar Kamu Adalah ${gayaBelajar}`}
+        ></PageTitle>
         <div className='container mt-2 mt-md-4'>
           <div className='materi-card-container'>
             {this.state.dataMateri.map((data) => {

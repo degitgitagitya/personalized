@@ -26,7 +26,7 @@ export default class PetunjukVideo extends Component {
         <PageTitle title={'Petunjuk'}></PageTitle>
         <div className='container'>
           <div className='bg-white shadow-sm p-3 d-flex justify-content-center'>
-            <ReactPlayer url={url} />
+            <ReactPlayer controls={true} url={url} />
           </div>
         </div>
       </>
