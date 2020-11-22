@@ -38,10 +38,7 @@ const CodeList = () => {
       method: 'GET',
       redirect: 'follow',
     };
-    fetch(
-      `${process.env.REACT_APP_DOM_SERVER}/contests/3/problems`,
-      requestOptions
-    )
+    fetch(`${process.env.REACT_APP_API_URL}/get/all/problems`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const data = result.sort(compare);
