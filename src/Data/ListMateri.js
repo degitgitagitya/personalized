@@ -1,36 +1,39 @@
+import Accommodator from './../Assets/Gambar/Accomodator.jpeg';
+import Diverger from './../Assets/Gambar/Diverger.jpeg';
+import Assimilator from './../Assets/Gambar/Assimilator.jpeg';
+import Converger from './../Assets/Gambar/Converger.jpeg';
+
 const LIST_MATERI = [
   {
     no: 1,
     title: 'Accommodator',
-    keterangan: 'Excepteur est aliqua velit quis.',
-    img:
-      'https://previews.123rf.com/images/studio3321/studio33211510/studio3321151000014/46519784-architecture-plans-and-sketch-of-house-project.jpg',
+    keterangan:
+      'Seorang individu dengan gaya accomadtor memiliki kemampuan untuk belajar terutama dari pengalaman "langsung".',
+    img: Accommodator,
     url: '/daftar-materi?id_gaya_belajar=1',
   },
   {
     no: 2,
     title: 'Diverger',
     keterangan:
-      'Non enim amet veniam proident culpa cillum non cillum ullamco consequat excepteur in.',
-    img:
-      'https://previews.123rf.com/images/studio3321/studio33211510/studio3321151000014/46519784-architecture-plans-and-sketch-of-house-project.jpg',
+      'Individu dengan gaya diverger paling baik dalam melihat situasi konkret dari berbagai sudut pandang.',
+    img: Diverger,
     url: '/daftar-materi?id_gaya_belajar=2',
   },
   {
     no: 3,
     title: 'Assimilator',
-    keterangan: 'Lorem velit irure aute amet quis adipisicing.',
-    img:
-      'https://previews.123rf.com/images/studio3321/studio33211510/studio3321151000014/46519784-architecture-plans-and-sketch-of-house-project.jpg',
+    keterangan:
+      'Seorang individu dengan gaya asimilator paling baik dalam memahami berbagai informasi dan memasukkan ke dalam bentuk yang ringkas dan logis.',
+    img: Assimilator,
     url: '/daftar-materi?id_gaya_belajar=3',
   },
   {
     no: 4,
     title: 'Converger',
     keterangan:
-      'Consequat sit quis tempor nulla fugiat et est pariatur occaecat exercitation.',
-    img:
-      'https://previews.123rf.com/images/studio3321/studio33211510/studio3321151000014/46519784-architecture-plans-and-sketch-of-house-project.jpg',
+      'Seorang individu dengan gaya converger memiliki kemampuan untuk memecahkan masalah dan membuat keputusan.',
+    img: Converger,
     url: '/daftar-materi?id_gaya_belajar=4',
   },
 ];

@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import NavBar from "../Components/NavBar";
-import PageTitle from "../Components/PageTitle";
+import React, { Component } from 'react';
+import NavBar from '../Components/NavBar';
+import PageTitle from '../Components/PageTitle';
 
-import "./SoalEvaluasi.css";
+import './SoalEvaluasi.css';
 
 export default class SoalEvaluasi extends Component {
   state = {
     soalEvaluasi: [],
-    namaEvaluasi: "",
+    namaEvaluasi: '',
     listJawaban: [],
   };
 
   componentDidMount() {
     const search = this.props.location.search;
     const params = new URLSearchParams(search);
-    const id = params.get("x");
-    const nama = params.get("y");
+    const id = params.get('x');
+    const nama = params.get('y');
 
     const requestOptions = {
-      method: "GET",
-      redirect: "follow",
+      method: 'GET',
+      redirect: 'follow',
     };
 
     fetch(
@@ -32,8 +32,8 @@ export default class SoalEvaluasi extends Component {
 
         result.forEach((element) => {
           let temp = {
-            index: "",
-            jawaban: "",
+            index: '',
+            jawaban: '',
           };
 
           x.push(temp);
@@ -45,7 +45,7 @@ export default class SoalEvaluasi extends Component {
           listJawaban: x,
         });
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   }
 
   onClickJawaban = (isRight, indexPilihan, indexSoal) => {
@@ -79,19 +79,33 @@ export default class SoalEvaluasi extends Component {
   };
 
   render() {
+    console.log(this.state.soalEvaluasi);
     return (
       <div>
         <NavBar></NavBar>
         <PageTitle title={this.state.namaEvaluasi}></PageTitle>
-        <div className="container">
-          <div className="soal-evaluasi-container">
+        <div className='container'>
+          <div className='soal-evaluasi-container'>
             {this.state.soalEvaluasi.map((data, index) => {
               let tempIndex = index;
               return (
-                <div key={data.id} className="row mb-2">
-                  <div className="col-md-12">
+                <div key={data.id} className='row mb-2'>
+                  <div className='col-md-12'>
                     {index + 1}. {data.pertanyaan}
-                    <div className="d-flex flex-column">
+                    {data.url !== '' ? (
+                      <div className='d-flex'>
+                        <div style={{ width: '100px' }}>
+                          <img
+                            src={data.url}
+                            alt={data.pertanyaan}
+                            className='img-fluid'
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                    <div className='d-flex flex-column'>
                       {data.pilihan.map((item, index) => {
                         return (
                           <div
@@ -109,8 +123,8 @@ export default class SoalEvaluasi extends Component {
                               className={`bullet-pilihan ${
                                 this.state.listJawaban[tempIndex].index ===
                                 index
-                                  ? "selected"
-                                  : ""
+                                  ? 'selected'
+                                  : ''
                               }`}
                             ></div>
                             <div>{item.pilihan}</div>
@@ -123,11 +137,11 @@ export default class SoalEvaluasi extends Component {
               );
             })}
 
-            <div className="row mt-3">
-              <div className="col-md-12">
+            <div className='row mt-3'>
+              <div className='col-md-12'>
                 <button
                   onClick={this.hitungHasil}
-                  className="btn btn-outline-info form-control"
+                  className='btn btn-outline-info form-control'
                 >
                   Lihat Hasil
                 </button>

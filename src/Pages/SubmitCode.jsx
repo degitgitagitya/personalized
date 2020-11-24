@@ -9,32 +9,44 @@ import CallValue from '../Assets/Soal/CallValue.pdf';
 import Fungsi from '../Assets/Soal/Fungsi.pdf';
 import Prosedur from '../Assets/Soal/Prosedur.pdf';
 import { AuthContext } from '../Contexts/Authentication';
+import MateriParameter from '../Assets/Accomodator/parameter.pdf';
+import MateriFungsi from '../Assets/Accomodator/fungsi.pdf';
+import MateriProsedur from '../Assets/Accomodator/prosedur.pdf';
+import MateriReference from '../Assets/Accomodator/reference.pdf';
+import MateriValue from '../Assets/Accomodator/value.pdf';
+import MateriVariable from '../Assets/Accomodator/variable.pdf';
 const axios = require('axios');
 
 const PDF_MATERI = [
   {
     id: 27,
     pdf: SoalParameter,
+    materi: MateriParameter,
   },
   {
     id: 38,
     pdf: CallReference,
+    materi: MateriReference,
   },
   {
     id: 26,
     pdf: Fungsi,
+    materi: MateriFungsi,
   },
   {
     id: 35,
     pdf: CallValue,
+    materi: MateriValue,
   },
   {
     id: 25,
     pdf: Prosedur,
+    materi: MateriProsedur,
   },
   {
     id: 34,
     pdf: VariabelGlobal,
+    materi: MateriVariable,
   },
 ];
 
@@ -216,9 +228,17 @@ const SubmitCode = () => {
             href={materi.pdf}
             target='_blank'
             rel='noopener noreferrer'
-            className='btn btn-dark'
+            className='btn btn-dark mr-2'
           >
             Download Soal
+          </a>
+          <a
+            href={materi.materi}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='btn btn-outline-info mr-2'
+          >
+            Download Materi
           </a>
         </div>
         <hr />

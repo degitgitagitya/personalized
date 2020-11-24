@@ -1,41 +1,41 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import "./DaftarEvaluasi.css";
-import NavBar from "../Components/NavBar";
-import PageTitle from "../Components/PageTitle";
-import ReactTable from "../Components/ReactTable";
+import './DaftarEvaluasi.css';
+import NavBar from '../Components/NavBar';
+import PageTitle from '../Components/PageTitle';
+import ReactTable from '../Components/ReactTable';
 
 export default class DaftarEvaluasi extends Component {
   state = {
     head: [
       {
-        Header: "Evaluasi",
+        Header: 'Evaluasi',
         columns: [
           {
-            Header: "No",
+            Header: 'No',
             Cell: ({ row }) => <div>{row.index + 1}</div>,
           },
           {
-            Header: "Nama Evaluasi",
-            accessor: "mata_pelajaran",
-            sortType: "basic",
+            Header: 'Nama Evaluasi',
+            accessor: 'mata_pelajaran',
+            sortType: 'basic',
           },
           {
-            Header: "Durasi",
-            accessor: "durasi",
-            sortType: "basic",
+            Header: 'Durasi',
+            accessor: 'durasi',
+            sortType: 'basic',
             Cell: ({ row }) => <div>{row.original.durasi} Menit</div>,
           },
           {
-            Header: "Action",
-            accessor: "id",
+            Header: 'Action',
+            accessor: 'id',
             Cell: ({ row }) => (
               <div>
                 <button
                   onClick={() => {
                     this.handleClickMulai(row.original);
                   }}
-                  className="btn btn-success"
+                  className='btn btn-success'
                 >
                   Mulai
                 </button>
@@ -50,24 +50,25 @@ export default class DaftarEvaluasi extends Component {
 
   handleClickMulai = (data) => {
     this.props.history.push(
-      `/soal-evaluasi?x=${data.id}&y=${data.mata_pelajaran}`
+      `/soal-evaluasi?x=${data.id_bank_soal}&y=${data.mata_pelajaran}`
     );
   };
 
   fetchUjian = () => {
     const requestOptions = {
-      method: "GET",
-      redirect: "follow",
+      method: 'GET',
+      redirect: 'follow',
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/ujian`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
+        console.log(result);
         this.setState({
           body: result,
         });
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   componentDidMount() {
@@ -78,9 +79,9 @@ export default class DaftarEvaluasi extends Component {
     return (
       <div>
         <NavBar></NavBar>
-        <PageTitle title={"Daftar Evaluasi"}></PageTitle>
-        <div className="container">
-          <div className="daftar-evaluasi-container">
+        <PageTitle title={'Daftar Evaluasi'}></PageTitle>
+        <div className='container'>
+          <div className='daftar-evaluasi-container'>
             <ReactTable
               head={this.state.head}
               body={this.state.body}
