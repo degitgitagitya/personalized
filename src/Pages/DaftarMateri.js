@@ -10,6 +10,7 @@ import PPTPage from './PPTPage';
 import VideoList from './VideoList';
 import CodeList from './CodeList';
 import FunctionLevel from '../Components/FunctionLevel';
+import IndikatorMateri from '../Components/IndikatorMateri';
 
 // const ContentCard = (props) => {
 //   return (
@@ -67,16 +68,23 @@ export default class DaftarMateri extends Component {
       <div>
         <NavBar />
         <PageTitle title={'Daftar Materi'} />
+        <IndikatorMateri />
         {this.state.idGayaBelajar === 2 ? (
           <div className='container'>
+            <h3 className='mt-2 text-white'>Materi</h3>
+            <hr className='border-white' />
             <PPTPage />
           </div>
         ) : this.state.idGayaBelajar === 3 ? (
           <div className='container'>
+            <h3 className='mt-2 text-white'>Materi</h3>
+            <hr className='border-white' />
             <VideoList />
           </div>
         ) : this.state.idGayaBelajar === 4 ? (
           <div className='container'>
+            <h3 className='mt-2 text-white'>Materi</h3>
+            <hr className='border-white' />
             <PDFPage />
           </div>
         ) : (
