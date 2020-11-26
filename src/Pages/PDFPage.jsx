@@ -19,7 +19,7 @@ const DATA_MATERI = [
   },
   {
     id: 3,
-    title: 'Parameter',
+    title: 'Parameter Pada Fungsi',
     file: FileParameter,
   },
   {
@@ -29,7 +29,7 @@ const DATA_MATERI = [
   },
   {
     id: 5,
-    title: 'Ruang Ringkup Variable',
+    title: 'Variabel Pada Fungsi',
     file: FileRuang,
   },
 ];
