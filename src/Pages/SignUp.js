@@ -14,6 +14,7 @@ class SignUp extends Component {
     inputPassword: "",
     inputConfirm: "",
     inputKelas: "",
+    inputLock: 0,
     error: false,
     errorMsg: "",
     listKelas: [],
@@ -49,6 +50,12 @@ class SignUp extends Component {
     });
   };
 
+  onChangeLock = (event) => {
+    this.setState({
+      inputLock: event.target.checked ? 1 : 0,
+    });
+  };
+
   toggleError = (msg) => {
     this.setState({
       error: true,
@@ -72,13 +79,15 @@ class SignUp extends Component {
       inputPassword,
       inputConfirm,
       inputKelas,
+      inputLock
     } = this.state;
     if (
       inputNama === "" ||
       inputEmail === "" ||
       inputPassword === "" ||
       inputConfirm === "" ||
-      inputKelas === ""
+      inputKelas === "" || 
+      inputLock === 0
     ) {
       return false;
     } else {
@@ -96,6 +105,7 @@ class SignUp extends Component {
       id_kelas: this.state.inputKelas,
       nama: this.state.inputNama,
       password: this.state.inputPassword,
+      lock: this.state.inputLock
     });
 
     const requestOptions = {
@@ -213,6 +223,18 @@ class SignUp extends Component {
                 placeholder="Password"
                 type="password"
               />
+
+              <div className="form-group">
+                <input
+                  value={this.state.inputLock}
+                  onChange={this.onChangeLock}
+                  id="lock-user"
+                  type="checkbox"
+                />
+                <label htmlFor="lock-user">
+                  &nbsp;Kunci Gaya belajar
+                </label>
+              </div>
 
               {this.state.error ? (
                 <div className="text-danger"> {this.state.errorMsg} </div>
