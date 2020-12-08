@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 
 import NavBar from '../Components/NavBar';
 import PageTitle from '../Components/PageTitle';
@@ -11,6 +11,8 @@ import VideoList from './VideoList';
 import CodeList from './CodeList';
 import FunctionLevel from '../Components/FunctionLevel';
 import IndikatorMateri from '../Components/IndikatorMateri';
+
+import { AuthContext } from "../Contexts/Authentication";
 
 // const ContentCard = (props) => {
 //   return (
@@ -33,6 +35,7 @@ import IndikatorMateri from '../Components/IndikatorMateri';
 // };
 
 export default class DaftarMateri extends Component {
+  static contextType = AuthContext;
   state = {
     listMateri: [],
     idGayaBelajar: null,
@@ -59,8 +62,26 @@ export default class DaftarMateri extends Component {
       .catch((error) => console.log('error', error));
   };
 
+  createLogActivity = () => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    const search = this.props.location.search;
+    const params = new URLSearchParams(search);
+    const idGayaBelajar = params.get('id_gaya_belajar');
+    const idSiswa = this.context.data.id;
+
+    fetch(`${process.env.REACT_APP_API_URL}/log_activity/${idGayaBelajar}/${idSiswa}`, requestOptions)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.log("error", error));
+  }
+
   componentDidMount() {
     this.fetchDataListMateri();
+    this.createLogActivity();
   }
 
   render() {
