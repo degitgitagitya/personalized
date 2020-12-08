@@ -22,7 +22,11 @@ class Pertanyaan extends Component {
           className='col-md-2'
         >
           <div className='kuesioner-check text-center'>
-            {this.props.jawaban.jawaban ? 'Ya' : ''}
+            {this.props.jawaban.jawaban
+              ? 'Ya'
+              : this.props.jawaban.jawaban === false
+              ? 'Tidak'
+              : ''}
           </div>
         </div>
       </div>
@@ -51,7 +55,7 @@ class Kuesioner extends Component {
         result.forEach((data) => {
           x.push({
             id: data.id,
-            jawaban: false,
+            jawaban: undefined,
             kunci: data.id_gaya_belajar,
           });
         });

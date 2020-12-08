@@ -50,7 +50,7 @@ export default class DaftarEvaluasi extends Component {
 
   handleClickMulai = (data) => {
     this.props.history.push(
-      `/soal-evaluasi?x=${data.id_bank_soal}&y=${data.mata_pelajaran}`
+      `/soal-evaluasi?x=${data.id_bank_soal}&y=${data.mata_pelajaran}&z=${data.id}`
     );
   };
 
@@ -63,7 +63,6 @@ export default class DaftarEvaluasi extends Component {
     fetch(`${process.env.REACT_APP_API_URL}/ujian`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         this.setState({
           body: result,
         });

@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import NavBar from '../Components/NavBar';
 import PageTitle from '../Components/PageTitle';
+import { AuthContext } from '../Contexts/Authentication';
 
 import './SoalEvaluasi.css';
 
 export default class SoalEvaluasi extends Component {
+  static contextType = AuthContext;
+
   state = {
     soalEvaluasi: [],
     namaEvaluasi: '',
     listJawaban: [],
+    idUjian: 0,
   };
 
   componentDidMount() {
@@ -16,6 +20,7 @@ export default class SoalEvaluasi extends Component {
     const params = new URLSearchParams(search);
     const id = params.get('x');
     const nama = params.get('y');
+    const idUjian = params.get('z');
 
     const requestOptions = {
       method: 'GET',
@@ -43,6 +48,7 @@ export default class SoalEvaluasi extends Component {
           namaEvaluasi: nama,
           soalEvaluasi: result,
           listJawaban: x,
+          idUjian: parseInt(idUjian),
         });
       })
       .catch((error) => console.log('error', error));
@@ -71,15 +77,59 @@ export default class SoalEvaluasi extends Component {
       }
     });
 
+    let submitList = [];
+    const { data } = this.context;
+    const listJawaban = this.state.listJawaban;
+    const listSoal = this.state.soalEvaluasi;
+    listSoal.forEach((element, index) => {
+      let jawabanBenar = '';
+      element.pilihan.forEach((temp) => {
+        if (temp.is_right === 1) {
+          jawabanBenar = temp.pilihan;
+        }
+      });
+
+      let temp = {
+        id_siswa: data.id,
+        id_ujian: this.state.idUjian,
+        id_soal: element.id,
+        jawaban: element.pilihan[listJawaban[index].index].pilihan,
+        kunci: jawabanBenar,
+        status: listJawaban[index].jawaban,
+        pertanyaan: element.pertanyaan,
+      };
+      submitList.push(temp);
+    });
+
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
+    const raw = JSON.stringify({
+      list_jawaban: submitList,
+    });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+
+    fetch(`${process.env.REACT_APP_API_URL}/jawaban`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error));
+
     this.props.history.push(
       `/hasil-evaluasi?x=${
         (jumlahBenar * 100) / jumlahSoal
-      }&y=${jumlahSalah}&z=${this.state.namaEvaluasi}`
+      }&y=${jumlahSalah}&z=${this.state.namaEvaluasi}&ujian=${
+        this.state.idUjian
+      }`
     );
   };
 
   render() {
-    console.log(this.state.soalEvaluasi);
     return (
       <div>
         <NavBar></NavBar>
