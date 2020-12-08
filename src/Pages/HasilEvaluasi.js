@@ -63,6 +63,12 @@ export default class HasilEvaluasi extends Component {
 
             <hr />
 
+            <div className='d-flex justify-content-center my-1'>
+              <button onClick={this.fetchListJawaban} className='btn btn-info'>
+                Refresh
+              </button>
+            </div>
+
             <table className='table'>
               <thead className='bg-primary text-white'>
                 <tr>
