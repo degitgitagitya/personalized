@@ -60,7 +60,11 @@ export default class PemilihanMateri extends Component {
         <div className='container mt-2 mt-md-4'>
           <div className='materi-card-container'>
             {this.state.dataMateri.map((data) => {
-              return <MateriCard key={data.no} data={data}></MateriCard>;
+              if (data.no === this.context.data.id_gaya_belajar && this.context.data.lock === 1) {
+                return <MateriCard key={data.no} data={data}></MateriCard>;
+              } else {
+                return <MateriCard key={data.no} data={data}></MateriCard>;
+              }
             })}
           </div>
         </div>

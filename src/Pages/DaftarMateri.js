@@ -75,7 +75,7 @@ export default class DaftarMateri extends Component {
 
     fetch(`${process.env.REACT_APP_API_URL}/log_activity/${idGayaBelajar}/${idSiswa}`, requestOptions)
       .then(response => response.json())
-      .then(result => console.log(result))
+      .then(result => console.log("success insert log"))
       .catch(error => console.log("error", error));
   }
 
