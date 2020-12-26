@@ -78,16 +78,14 @@ class SignUp extends Component {
       inputEmail,
       inputPassword,
       inputConfirm,
-      inputKelas,
-      inputLock
+      inputKelas
     } = this.state;
     if (
       inputNama === "" ||
       inputEmail === "" ||
       inputPassword === "" ||
       inputConfirm === "" ||
-      inputKelas === "" || 
-      inputLock === 0
+      inputKelas === ""
     ) {
       return false;
     } else {
