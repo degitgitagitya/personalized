@@ -51,6 +51,18 @@ export default class PemilihanMateri extends Component {
     } else if (this.context.data.id_gaya_belajar === 4) {
       gayaBelajar = 'Converger';
     }
+
+    let daftarMateri = null;
+    if (this.context.data.lock === 1) {
+      const data = this.state.dataMateri.filter(data => data.no === this.context.data.id_gaya_belajar);
+      daftarMateri = data.map((data) => {
+        return <MateriCard key={data.no} data={data}></MateriCard>;
+      })
+    } else {
+      daftarMateri = this.state.dataMateri.map((data) => {
+        return <MateriCard key={data.no} data={data}></MateriCard>;
+      })
+    }
     return (
       <div>
         <NavBar></NavBar>
@@ -59,9 +71,7 @@ export default class PemilihanMateri extends Component {
         ></PageTitle>
         <div className='container mt-2 mt-md-4'>
           <div className='materi-card-container'>
-            {this.state.dataMateri.map((data) => {
-              return <MateriCard key={data.no} data={data}></MateriCard>;
-            })}
+            {daftarMateri}
           </div>
         </div>
       </div>

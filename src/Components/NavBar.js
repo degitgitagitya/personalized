@@ -34,7 +34,7 @@ class NavBar extends Component {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {this.context.isAuth ? (
+        {this.context.isAuth && this.context.data.id_gaya_belajar !== "" ? (
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto mr-5">
               <li
@@ -61,6 +61,8 @@ class NavBar extends Component {
               Log Out
             </button>
           </div>
+        ) : this.context.isAuth && this.context.data.id_gaya_belajar === "" ? (
+          <ul className="navbar-nav mr-auto"></ul>
         ) : (
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto"></ul>

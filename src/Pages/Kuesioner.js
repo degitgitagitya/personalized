@@ -119,6 +119,7 @@ class Kuesioner extends Component {
       id_kelas: '',
       nama: this.context.data.nama,
       password: this.context.data.password,
+      lock: this.context.data.lock
     });
 
     const requestOptions = {
